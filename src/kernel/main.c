@@ -22,9 +22,6 @@ int kernel_main(uint32_t magic, uint32_t* mbi_addr) {
 
 	mbi = (multiboot_info_t*)mbi_addr;
 
-	pmm_init();
-	vmm_init();
-
 	supports_vbe = ((mbi->flags & (1 << 12)) && mbi->framebuffer_type == 1) ? true : false;
 
 	srand(100);
