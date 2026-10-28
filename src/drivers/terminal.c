@@ -176,9 +176,20 @@ void term_put_char(char c) {
             textmode_term_set_cursor_pos(term_row, term_column);
         } 
         return;
-    }
-
-    if (c == '\n') {
+    } else if(c == '\t') {
+		if(supports_vbe) {
+			for(int i = 0; i < 4; i++) {
+        		psf_putchar(term_column * font->width, term_row * font->height, ' ', term_fg, term_bg);
+				term_column++;
+			}
+		} else {
+			for(int i = 0; i < 4; i++) {
+				textmode_term_put_entry_at(' ', term_fg | term_bg << 4, term_column, term_row);
+            	textmode_term_set_cursor_pos(term_row, term_column);
+				term_column++;
+			}
+		}
+	} else if (c == '\n') {
         term_column = 0;
         term_row++;
         if(!supports_vbe) textmode_term_set_cursor_pos(term_row, term_column);

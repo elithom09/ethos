@@ -6,8 +6,6 @@
 #include "kernel/fonts.h"
 #include "kernel/utils.h"
 #include "kernel/cmdline.h"
-#include "kernel/vmm.h"
-#include "kernel/pmm.h"
 #include <stdint.h>
 #include <stdbool.h>
 
